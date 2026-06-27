@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>File Manager</title>
+
+<style>
+body{font-family:Arial;background:#f5f5f5;margin:0}
+.container{max-width:700px;margin:40px auto;background:#fff;padding:20px;border-radius:8px}
+h2,h3{margin-top:0}
+ul{list-style:none;padding:0}
+li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #ddd}
+button,a{padding:6px 10px;text-decoration:none}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Upload File</h2>
+
+<form id="uploadForm" enctype="multipart/form-data">
+<input type="file" name="file" required>
+<button>Upload</button>
+</form>
+
+<hr>
+
+<h3>Files</h3>
+
+<form id="zipForm">
+
+<div id="files">Loading...</div>
+
+<br>
+
+<button type="submit">Download ZIP</button>
+
+</form>
+
+</div>
+
+<script>
+
+function loadFiles(){
+fetch("code.php?action=list")
+.then(r=>r.text())
+.then(html=>document.getElementById("files").innerHTML=html);
+}
+
+loadFiles();
+
+document.getElementById("uploadForm").onsubmit=e=>{
+e.preventDefault();
+
+let fd=new FormData(e.target);
+
+fetch("code.php?action=upload",{
+method:"POST",
+body:fd
+}).then(()=>{
+e.target.reset();
+loadFiles();
+});
+};
+
+document.getElementById("zipForm").onsubmit=e=>{
+e.preventDefault();
+
+let fd=new FormData(e.target);
+
+fetch("code.php?action=zip",{
+method:"POST",
+body:fd
+})
+.then(r=>r.blob())
+.then(blob=>{
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="selected_files.zip";
+a.click();
+});
+};
+
+function del(name){
+if(!confirm("Delete file?")) return;
+
+fetch("code.php?action=delete&file="+encodeURIComponent(name))
+.then(()=>loadFiles());
+}
+
+</script>
+
+</body>
+</html>
