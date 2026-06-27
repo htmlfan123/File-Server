@@ -1,0 +1,1 @@
+html js php code for file server it allows you to upload see list download them delete them select ones to delete and or zip and download the zip can fork if you want just put in foter my name please connor find me on github https://github.com/htmlguy123
