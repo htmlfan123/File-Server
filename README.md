@@ -60,7 +60,3 @@ This example is intentionally minimal. Before using this in any exposed environm
 ## Contributing
 
 Contributions are welcome. If you make improvements (especially around security or tests), please open a pull request describing the changes.
-
-## License
-
-No license specified. Add a LICENSE file if you want to make this project open source.
