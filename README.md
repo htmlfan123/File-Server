@@ -27,4 +27,4 @@ The application will automatically create an `uploads/` directory next to `code.
 
 ## Contributing
 
-Contributions are welcome. If you make improvements (especially around security or tests), please open a pull request describing the changes.
+Contributions are welcome. if you want to , please open a pull request describing the changes.
