@@ -1,6 +1,6 @@
 # File Server
 
-A small, file manager built with PHP and html.
+A small, file manager built with PHP
 ## Quick start
 
 1. Clone the repository:
